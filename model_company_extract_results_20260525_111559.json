@@ -1,0 +1,260 @@
+{
+  "created_at": "2026-05-25T11:15:59",
+  "url": "https://zhuanlan.zhihu.com/p/658421225",
+  "image": null,
+  "models": [
+    {
+      "provider": "dashscope",
+      "model": "deepseek-v4-pro",
+      "api_key": "sk-61e...0492",
+      "base_url": "https://dashscope.aliyuncs.com/compatible-mode/v1",
+      "supports_image": false,
+      "source": "project DashScope-compatible DeepSeek config"
+    },
+    {
+      "provider": "dashscope",
+      "model": "deepseek-v4-flash",
+      "api_key": "sk-61e...0492",
+      "base_url": "https://dashscope.aliyuncs.com/compatible-mode/v1",
+      "supports_image": false,
+      "source": "project DashScope-compatible DeepSeek config"
+    },
+    {
+      "provider": "dashscope",
+      "model": "vanchin/deepseek-v3.1-terminus",
+      "api_key": "sk-61e...0492",
+      "base_url": "https://dashscope.aliyuncs.com/compatible-mode/v1",
+      "supports_image": false,
+      "source": "project DashScope-compatible DeepSeek config"
+    },
+    {
+      "provider": "dashscope",
+      "model": "vanchin/deepseek-r1",
+      "api_key": "sk-61e...0492",
+      "base_url": "https://dashscope.aliyuncs.com/compatible-mode/v1",
+      "supports_image": false,
+      "source": "project DashScope-compatible DeepSeek config"
+    },
+    {
+      "provider": "dashscope",
+      "model": "qwen-omni-4.0",
+      "api_key": "sk-61e...0492",
+      "base_url": "https://dashscope.aliyuncs.com/compatible-mode/v1",
+      "supports_image": true,
+      "source": "project qwen-omni candidate"
+    },
+    {
+      "provider": "deepseek-official",
+      "model": "deepseek-chat",
+      "api_key": "sk-58f...20ca",
+      "base_url": "https://api.deepseek.com",
+      "supports_image": false,
+      "source": "settings.yaml DeepSeek config"
+    },
+    {
+      "provider": "deepseek-official",
+      "model": "deepseek-v4-pro",
+      "api_key": "sk-58f...20ca",
+      "base_url": "https://api.deepseek.com",
+      "supports_image": false,
+      "source": "settings.yaml DeepSeek config"
+    },
+    {
+      "provider": "ark",
+      "model": "ep-20250205154622-7gm5g",
+      "api_key": "adcc84...1ece",
+      "base_url": "https://ark.cn-beijing.volces.com/api/v3",
+      "supports_image": false,
+      "source": "project Ark/Doubao endpoint config"
+    },
+    {
+      "provider": "ark",
+      "model": "ep-20250217153205-d7px5",
+      "api_key": "adcc84...1ece",
+      "base_url": "https://ark.cn-beijing.volces.com/api/v3",
+      "supports_image": false,
+      "source": "project Ark/Doubao endpoint config"
+    },
+    {
+      "provider": "ark",
+      "model": "ep-20250217153421-8lrxj",
+      "api_key": "adcc84...1ece",
+      "base_url": "https://ark.cn-beijing.volces.com/api/v3",
+      "supports_image": false,
+      "source": "project Ark/Doubao endpoint config"
+    }
+  ],
+  "fetch_attempts": [
+    {
+      "method": "jina_reader",
+      "url": "https://r.jina.ai/https://zhuanlan.zhihu.com/p/658421225",
+      "authorization": "jina_e...SiIW",
+      "error": "HTTPSConnectionPool(host='r.jina.ai', port=443): Max retries exceeded with url: /https://zhuanlan.zhihu.com/p/658421225 (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x7fb525886940>: Failed to establish a new connection: [Errno 101] Network is unreachable'))"
+    },
+    {
+      "method": "direct_html",
+      "url": "https://zhuanlan.zhihu.com/p/658421225",
+      "status_code": 403,
+      "content_length": 584,
+      "error": "    <!DOCTYPE html><html lang=\"en\"><head><meta id=\"zh-zse-ck\" charset=\"UTF-8\" content=\"1geG/YGO3F6nY5KEnitFQxL9VoAFqAyEOfpXpAZAKnmFO1UuMSCbPKiIH7fOiKVzQZKwfcMsorBONXgyIvta3zi4w6OoaCWtGnjmBnengJgojDYwlq3KRJJEPg5POUn/\"></head><body><div style=\"color:#535861;opacity: 0.1;display: flex;justify-content: "
+    }
+  ],
+  "results": [
+    {
+      "can_read": false,
+      "companies": [],
+      "notes": "无法访问知乎专栏链接的真实正文内容，不能基于链接标题或外部知识进行企业名称抽取。",
+      "meta": {
+        "provider": "dashscope",
+        "model": "deepseek-v4-pro",
+        "base_url": "https://dashscope.aliyuncs.com/compatible-mode/v1",
+        "api_key": "sk-61e...0492",
+        "elapsed_seconds": 1.94,
+        "raw": "{\n  \"can_read\": false,\n  \"companies\": [],\n  \"notes\": \"无法访问知乎专栏链接的真实正文内容，不能基于链接标题或外部知识进行企业名称抽取。\"\n}"
+      },
+      "mode": "direct_url",
+      "model_label": "dashscope:deepseek-v4-pro"
+    },
+    {
+      "can_read": false,
+      "companies": [],
+      "notes": "无法访问该网页的真实正文内容，因此无法进行企业名称抽取和标准化。",
+      "meta": {
+        "provider": "dashscope",
+        "model": "deepseek-v4-flash",
+        "base_url": "https://dashscope.aliyuncs.com/compatible-mode/v1",
+        "api_key": "sk-61e...0492",
+        "elapsed_seconds": 3.06,
+        "raw": "{\n  \"can_read\": false,\n  \"companies\": [],\n  \"notes\": \"无法访问该网页的真实正文内容，因此无法进行企业名称抽取和标准化。\"\n}"
+      },
+      "mode": "direct_url",
+      "model_label": "dashscope:deepseek-v4-flash"
+    },
+    {
+      "can_read": false,
+      "companies": [],
+      "notes": "模型调用失败或返回非 JSON",
+      "meta": {
+        "provider": "dashscope",
+        "model": "vanchin/deepseek-v3.1-terminus",
+        "base_url": "https://dashscope.aliyuncs.com/compatible-mode/v1",
+        "api_key": "sk-61e...0492",
+        "json_mode_error": "Error code: 400 - {'error': {'message': 'The product is not activated, please confirm that you have activated products and try again after activation.', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_parameter_error'}, 'request_id': '9adecdbf-469a-97a2-a9ce-126eb7878efd'}",
+        "elapsed_seconds": 5.07,
+        "error": "Error code: 400 - {'error': {'message': 'The product is not activated, please confirm that you have activated products and try again after activation.', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_parameter_error'}, 'request_id': '2b1f97e6-efeb-92cb-89e3-9ff511100416'}"
+      },
+      "mode": "direct_url",
+      "model_label": "dashscope:vanchin/deepseek-v3.1-terminus"
+    },
+    {
+      "can_read": false,
+      "companies": [],
+      "notes": "模型调用失败或返回非 JSON",
+      "meta": {
+        "provider": "dashscope",
+        "model": "vanchin/deepseek-r1",
+        "base_url": "https://dashscope.aliyuncs.com/compatible-mode/v1",
+        "api_key": "sk-61e...0492",
+        "json_mode_error": "Error code: 400 - {'error': {'message': 'The product is not activated, please confirm that you have activated products and try again after activation.', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_parameter_error'}, 'request_id': '2064ebd4-0590-9114-996c-0a20f294f77b'}",
+        "elapsed_seconds": 4.5,
+        "error": "Error code: 400 - {'error': {'message': 'The product is not activated, please confirm that you have activated products and try again after activation.', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_parameter_error'}, 'request_id': '5e57a4cd-9e85-9abf-9f6a-14954b81dbff'}"
+      },
+      "mode": "direct_url",
+      "model_label": "dashscope:vanchin/deepseek-r1"
+    },
+    {
+      "can_read": false,
+      "companies": [],
+      "notes": "模型调用失败或返回非 JSON",
+      "meta": {
+        "provider": "dashscope",
+        "model": "qwen-omni-4.0",
+        "base_url": "https://dashscope.aliyuncs.com/compatible-mode/v1",
+        "api_key": "sk-61e...0492",
+        "json_mode_error": "Error code: 404 - {'error': {'message': 'The model `qwen-omni-4.0` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'param': None, 'code': 'model_not_found'}, 'request_id': '16f2451c-85d8-927b-b253-9317ffb76ea5'}",
+        "elapsed_seconds": 0.09,
+        "error": "Error code: 404 - {'error': {'message': 'The model `qwen-omni-4.0` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'param': None, 'code': 'model_not_found'}, 'request_id': 'e6747e66-d1aa-996d-b10d-4da3815167ff'}"
+      },
+      "mode": "direct_url",
+      "model_label": "dashscope:qwen-omni-4.0"
+    },
+    {
+      "can_read": false,
+      "companies": [],
+      "notes": "无法访问该网页的真实正文内容，因此无法提取企业名称。",
+      "meta": {
+        "provider": "deepseek-official",
+        "model": "deepseek-chat",
+        "base_url": "https://api.deepseek.com",
+        "api_key": "sk-58f...20ca",
+        "elapsed_seconds": 0.73,
+        "raw": "{\n  \"can_read\": false,\n  \"companies\": [],\n  \"notes\": \"无法访问该网页的真实正文内容，因此无法提取企业名称。\"\n}"
+      },
+      "mode": "direct_url",
+      "model_label": "deepseek-official:deepseek-chat"
+    },
+    {
+      "can_read": false,
+      "companies": [],
+      "notes": "无法访问该网页链接的真实正文，因此不能进行企业名称抽取。",
+      "meta": {
+        "provider": "deepseek-official",
+        "model": "deepseek-v4-pro",
+        "base_url": "https://api.deepseek.com",
+        "api_key": "sk-58f...20ca",
+        "elapsed_seconds": 3.09,
+        "raw": "{\n  \"can_read\": false,\n  \"companies\": [],\n  \"notes\": \"无法访问该网页链接的真实正文，因此不能进行企业名称抽取。\"\n}"
+      },
+      "mode": "direct_url",
+      "model_label": "deepseek-official:deepseek-v4-pro"
+    },
+    {
+      "can_read": false,
+      "companies": [],
+      "notes": "模型调用失败或返回非 JSON",
+      "meta": {
+        "provider": "ark",
+        "model": "ep-20250205154622-7gm5g",
+        "base_url": "https://ark.cn-beijing.volces.com/api/v3",
+        "api_key": "adcc84...1ece",
+        "json_mode_error": "Error code: 401 - {'error': {'code': 'AuthenticationError', 'message': \"The API key doesn't exist. Request id: 021779678959616cb1021ee4195f5391b444bb7c7eb4d077aa27e\", 'param': '', 'type': 'Unauthorized'}}",
+        "elapsed_seconds": 0.07,
+        "error": "Error code: 401 - {'error': {'code': 'AuthenticationError', 'message': \"The API key doesn't exist. Request id: 021779678959631cb1021ee4195f5391b444bb7c7eb4d072ff182\", 'param': '', 'type': 'Unauthorized'}}"
+      },
+      "mode": "direct_url",
+      "model_label": "ark:ep-20250205154622-7gm5g"
+    },
+    {
+      "can_read": false,
+      "companies": [],
+      "notes": "模型调用失败或返回非 JSON",
+      "meta": {
+        "provider": "ark",
+        "model": "ep-20250217153205-d7px5",
+        "base_url": "https://ark.cn-beijing.volces.com/api/v3",
+        "api_key": "adcc84...1ece",
+        "json_mode_error": "Error code: 401 - {'error': {'code': 'AuthenticationError', 'message': \"The API key doesn't exist. Request id: 021779678959686588985e672cd0566a01c88b0747ade674f7183\", 'param': '', 'type': 'Unauthorized'}}",
+        "elapsed_seconds": 0.07,
+        "error": "Error code: 401 - {'error': {'code': 'AuthenticationError', 'message': \"The API key doesn't exist. Request id: 021779678959703588985e672cd0566a01c88b0747ade67c0754b\", 'param': '', 'type': 'Unauthorized'}}"
+      },
+      "mode": "direct_url",
+      "model_label": "ark:ep-20250217153205-d7px5"
+    },
+    {
+      "can_read": false,
+      "companies": [],
+      "notes": "模型调用失败或返回非 JSON",
+      "meta": {
+        "provider": "ark",
+        "model": "ep-20250217153421-8lrxj",
+        "base_url": "https://ark.cn-beijing.volces.com/api/v3",
+        "api_key": "adcc84...1ece",
+        "json_mode_error": "Error code: 401 - {'error': {'code': 'AuthenticationError', 'message': \"The API key doesn't exist. Request id: 0217796789597567848add4e72517c848b0b48c5d5b8fdfd27346\", 'param': '', 'type': 'Unauthorized'}}",
+        "elapsed_seconds": 0.07,
+        "error": "Error code: 401 - {'error': {'code': 'AuthenticationError', 'message': \"The API key doesn't exist. Request id: 0217796789597697848add4e72517c848b0b48c5d5b8fdfebaccd\", 'param': '', 'type': 'Unauthorized'}}"
+      },
+      "mode": "direct_url",
+      "model_label": "ark:ep-20250217153421-8lrxj"
+    }
+  ]
+}

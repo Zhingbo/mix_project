@@ -1,0 +1,160 @@
+# 完整的系统配置文件
+system_settings:
+  # Jina API 配置
+  jina_api_url: "https://s.jina.ai/"
+  jina_api_headers:
+    Accept: "application/json"
+    Content-Type: "application/json"
+  
+  # 更新后的Jina API密钥配置
+  jina_api_keys:
+    - name: "key1"
+      key: "YOUR_JINA_API_KEY_1"
+      status: "active"
+      daily_limit: 10000
+      used_today: 0
+    - name: "key2" 
+      key: "YOUR_JINA_API_KEY_2"
+      status: "active"
+      daily_limit: 10000
+      used_today: 0
+    - name: "key3"
+      key: "YOUR_JINA_API_KEY_3"
+      status: "active"
+      daily_limit: 10000
+      used_today: 0
+    - name: "key4"
+      key: "YOUR_JINA_API_KEY_4"
+      status: "active"
+      daily_limit: 10000
+      used_today: 0
+  
+  # Jina API请求头模板
+  jina_api_headers_template:
+    Accept: "application/json"
+    Content-Type: "application/json"
+    Authorization: "Bearer {api_key}"
+  
+  # DeepSeek API配置
+  deepseek_api_key: "sk-your-deepseek-api-key"
+  deepseek_url: "https://api.deepseek.com/v1/chat/completions"
+
+# 提示词配置（从原配置文件复制）
+prompts:
+  input_clean: 
+    desc: 对用户输入进行产业链相关度过滤
+    content: |
+        【核心任务】从输入中精确提取唯一产业关键词
+
+        【必须遵守的规则】
+        1. 多词处理规则：
+           - 当出现多个产业词时，选择首个符合标准的产业词
+           - 用户可能输入多个产业词,但是你返回的结果中的产业词不能包含多个不同的含义,只保留一个产业
+
+        2. 最终输出规则（强化）：
+           - 必须且只能输出1个词
+           - 直接输出词语本身，不加引号
+           - 保持原词形态（如"5G"不转写为"五G"）
+
+        3. 排除标准（满足任一即返回空）：
+           - 单字/语气词（例：哈/啊/哦）
+           - 缺乏产业指向的词汇（例：发展/经济）
+           - 包含疑问词/祈使句（吗/怎样/请）
+           - 敏感词/无意义内容
+           - 不构成任何含义的纯数字内容           
+
+        【处理流程】
+        1. 去除所有语气词、疑问词
+        2. 最终输出仅保留1个最简产业关键词（1个词）
+        3. 如果用户输入包含多个产业链名称，必须只选择并返回其中一个产业链名称
+        4. 对含多个产业词的情况执行强制单选       
+
+        【示例对照】
+        输入："哈哈哈" → 输出：""
+        输入："半导体设备制造" → 输出："半导体设备制造"
+        输入："手机产业链发展现状" → 输出："手机"
+        输入："请问怎么查农业数据" → 输出："农业数据"
+        输入："钢铁产业链煤炭产业链" → 输出："钢铁"
+        输入："新能源车与光伏产业链对比" → 输出："新能源车"
+        输入："钢铁/煤炭产业链分析" → 输出："钢铁"
+        输入："锂电池 光伏 储能" → 输出："锂电池"
+
+        【特别注意】
+        1. 最终输出仅保留一个产业关键词
+        2. 最终输出不要包含特殊符号如空格,逗号等等
+
+        现在处理用户输入：
+
+  input_clean_post: 
+    desc: 对选出的产业关键词进行校验
+    content: |
+        【核心任务】从输入中精确提取唯一产业关键词
+
+        【必须遵守的规则】
+        1. 多词处理规则：
+           - 当出现多个产业词时，选择首个符合标准的产业词
+           - 用户可能输入多个产业词,但是你返回的结果中的产业词不能包含多个不同的含义,只保留一个产业
+
+        2. 最终输出规则（强化）：
+           - 必须且只能输出1个词
+           - 直接输出词语本身，不加引号
+           - 保持原词形态（如"5G"不转写为"五G"）
+
+        3. 排除标准（满足任一即返回空）：
+           - 单字/语气词（例：哈/啊/哦）
+           - 缺乏产业指向的词汇（例：发展/经济）
+           - 包含疑问词/祈使句（吗/怎样/请）
+           - 敏感词/无意义内容
+           - 不构成任何含义的纯数字内容           
+
+        【处理流程】
+        1. 去除所有语气词、疑问词
+        2. 最终输出仅保留1个最简产业关键词（1个词）
+        3. 如果用户输入包含多个产业链名称，必须只选择并返回其中一个产业链名称
+        4. 对含多个产业词的情况执行强制单选       
+
+        【示例对照】
+        输入："钢铁 农业" → 输出："钢铁"
+        输入："新能源车\n光伏" → 输出："新能源车"
+
+        【特别注意】
+        1. 最终输出仅保留一个产业关键词
+        2. 最终输出不要包含特殊符号如空格,逗号等等
+
+        现在处理用户输入：
+
+  # 添加其他必需的提示词
+  clean_info:
+    desc: 清理产业信息
+    content: |
+        请清理和整理以下产业信息，保持专业性和准确性：
+
+  clean_node_info:
+    desc: 清理节点信息  
+    content: |
+        请清理和整理以下节点信息：
+
+  words_from_ocr:
+    desc: 从OCR提取关键词
+    content: |
+        从以下OCR文本中提取关键词：
+
+  get_entity:
+    desc: 提取实体信息
+    content: |
+        从以下文本中提取相关实体：
+
+  get_triples:
+    desc: 获取三元组
+    content: |
+        从以下文本中提取三元组关系：
+
+  check_triples:
+    desc: 检查三元组
+    content: |
+        检查以下三元组的准确性：
+
+  modify_triples:
+    desc: 修改三元组
+    content: |
+        修改以下三元组：

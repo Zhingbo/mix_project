@@ -1,0 +1,242 @@
+{
+  "api_key_prefix": "sk-61e66c3...",
+  "base_url": "https://dashscope.aliyuncs.com/compatible-mode/v1",
+  "available_models": [
+    {
+      "model": "deepseek-r1",
+      "category": "DeepSeek系列",
+      "response": {
+        "id": "chatcmpl-4842d0ea-5407-9789-b8b0-07b40c58f580",
+        "choices": [
+          {
+            "finish_reason": "length",
+            "index": 0,
+            "logprobs": null,
+            "message": {
+              "content": "Hi! 😊 How can I help you today",
+              "refusal": null,
+              "role": "assistant",
+              "annotations": null,
+              "audio": null,
+              "function_call": null,
+              "tool_calls": null,
+              "reasoning_content": "Okay, user just said \"Hi\". That's a very simple greeting, no additional context or requests. \n\nHmm, they might be testing if I'm active, or just starting a conversation casually. Since it's so minimal, I should keep my response equally light and friendly but leave room for them to steer the conversation. \n\nI notice they didn't use any emojis or exclamation marks - maybe they're the straightforward type? But better match their tone while adding warmth. A smiley face feels appropriate here to make it welcoming. \n\nNo need to overthink this. Just a cheerful acknowledgment and an open-ended prompt works best. The ball's in their court now!"
+            }
+          }
+        ],
+        "created": 1766977407,
+        "model": "deepseek-r1",
+        "object": "chat.completion",
+        "service_tier": null,
+        "system_fingerprint": null,
+        "usage": {
+          "completion_tokens": 152,
+          "prompt_tokens": 4,
+          "total_tokens": 156,
+          "completion_tokens_details": {
+            "accepted_prediction_tokens": null,
+            "audio_tokens": null,
+            "reasoning_tokens": 137,
+            "rejected_prediction_tokens": null
+          },
+          "prompt_tokens_details": null
+        }
+      }
+    },
+    {
+      "model": "qwen-turbo",
+      "category": "通义千问Qwen系列",
+      "response": {
+        "id": "chatcmpl-125dab26-e92c-969d-85b0-dd7b1470e50b",
+        "choices": [
+          {
+            "finish_reason": "length",
+            "index": 0,
+            "logprobs": null,
+            "message": {
+              "content": "Hello! How can I assist you today? ",
+              "refusal": null,
+              "role": "assistant",
+              "annotations": null,
+              "audio": null,
+              "function_call": null,
+              "tool_calls": null
+            }
+          }
+        ],
+        "created": 1766977407,
+        "model": "qwen-turbo",
+        "object": "chat.completion",
+        "service_tier": null,
+        "system_fingerprint": null,
+        "usage": {
+          "completion_tokens": 10,
+          "prompt_tokens": 13,
+          "total_tokens": 23,
+          "completion_tokens_details": null,
+          "prompt_tokens_details": {
+            "audio_tokens": null,
+            "cached_tokens": 0
+          }
+        }
+      }
+    },
+    {
+      "model": "qwen-plus",
+      "category": "通义千问Qwen系列",
+      "response": {
+        "id": "chatcmpl-f767cabd-3d12-9b65-84af-4305230e7970",
+        "choices": [
+          {
+            "finish_reason": "length",
+            "index": 0,
+            "logprobs": null,
+            "message": {
+              "content": "Hello! ٩(◕‿◕｡",
+              "refusal": null,
+              "role": "assistant",
+              "annotations": null,
+              "audio": null,
+              "function_call": null,
+              "tool_calls": null
+            }
+          }
+        ],
+        "created": 1766977408,
+        "model": "qwen-plus",
+        "object": "chat.completion",
+        "service_tier": null,
+        "system_fingerprint": null,
+        "usage": {
+          "completion_tokens": 10,
+          "prompt_tokens": 9,
+          "total_tokens": 19,
+          "completion_tokens_details": null,
+          "prompt_tokens_details": {
+            "audio_tokens": null,
+            "cached_tokens": 0
+          }
+        }
+      }
+    },
+    {
+      "model": "qwen-max",
+      "category": "通义千问Qwen系列",
+      "response": {
+        "id": "chatcmpl-94f4db0a-883a-9b33-887b-d9b82d28efcc",
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "logprobs": null,
+            "message": {
+              "content": "Hello! How can I assist you today?",
+              "refusal": null,
+              "role": "assistant",
+              "annotations": null,
+              "audio": null,
+              "function_call": null,
+              "tool_calls": null
+            }
+          }
+        ],
+        "created": 1766977409,
+        "model": "qwen-max",
+        "object": "chat.completion",
+        "service_tier": null,
+        "system_fingerprint": null,
+        "usage": {
+          "completion_tokens": 9,
+          "prompt_tokens": 9,
+          "total_tokens": 18,
+          "completion_tokens_details": null,
+          "prompt_tokens_details": {
+            "audio_tokens": null,
+            "cached_tokens": 0
+          }
+        }
+      }
+    },
+    {
+      "model": "qwen-max-longcontext",
+      "category": "通义千问Qwen系列",
+      "response": {
+        "id": "chatcmpl-08ac7865-2868-9e90-818e-8475651ce7b1",
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "logprobs": null,
+            "message": {
+              "content": "Hello! How can I assist you today?",
+              "refusal": null,
+              "role": "assistant",
+              "annotations": null,
+              "audio": null,
+              "function_call": null,
+              "tool_calls": null
+            }
+          }
+        ],
+        "created": 1766977409,
+        "model": "qwen-max",
+        "object": "chat.completion",
+        "service_tier": null,
+        "system_fingerprint": null,
+        "usage": {
+          "completion_tokens": 9,
+          "prompt_tokens": 9,
+          "total_tokens": 18,
+          "completion_tokens_details": null,
+          "prompt_tokens_details": {
+            "audio_tokens": null,
+            "cached_tokens": 0
+          }
+        }
+      }
+    }
+  ],
+  "unavailable_models": [
+    {
+      "model": "deepseek-chat",
+      "category": "DeepSeek系列",
+      "error": "Error code: 404 - {'error': {'message': 'The model `deepseek-chat` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'param': None, 'code': 'model_not_found'}, 'request_id': '87e78f4e-c060-94a4-b118-8da07ecc48ee'}"
+    },
+    {
+      "model": "deepseek-reasoner",
+      "category": "DeepSeek系列",
+      "error": "Error code: 404 - {'error': {'message': 'The model `deepseek-reasoner` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'param': None, 'code': 'model_not_found'}, 'request_id': '7aa6d337-2e55-9cb2-9119-50d5eb558ded'}"
+    },
+    {
+      "model": "qwen-7b-chat",
+      "category": "通义千问Qwen系列",
+      "error": "Error code: 404 - {'error': {'message': 'The model `qwen-7b-chat` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'param': None, 'code': 'model_not_found'}, 'request_id': 'bd88d059-b888-990c-85d3-049f1fa6d64b'}"
+    },
+    {
+      "model": "qwen-14b-chat",
+      "category": "通义千问Qwen系列",
+      "error": "Error code: 404 - {'error': {'message': 'The model `qwen-14b-chat` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'param': None, 'code': 'model_not_found'}, 'request_id': '3853f013-f0f7-92dc-9292-4ef44eb70bb2'}"
+    },
+    {
+      "model": "qwen-72b-chat",
+      "category": "通义千问Qwen系列",
+      "error": "Error code: 404 - {'error': {'message': 'The model `qwen-72b-chat` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'param': None, 'code': 'model_not_found'}, 'request_id': '3d21fd4f-fc71-945a-8d77-acb7a254022a'}"
+    },
+    {
+      "model": "baichuan-13b-chat",
+      "category": "其他模型",
+      "error": "Error code: 404 - {'error': {'message': 'The model `baichuan-13b-chat` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'param': None, 'code': 'model_not_found'}, 'request_id': '0beafb98-a193-9f87-8e12-a9fe3ca671a9'}"
+    },
+    {
+      "model": "chatglm-6b",
+      "category": "其他模型",
+      "error": "Error code: 404 - {'error': {'message': 'The model `chatglm-6b` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'param': None, 'code': 'model_not_found'}, 'request_id': '5b12da0c-ea8d-915e-b804-c79a8ff26457'}"
+    },
+    {
+      "model": "yi-34b-chat",
+      "category": "其他模型",
+      "error": "Error code: 404 - {'error': {'message': 'Unsupported model `yi-34b-chat` for OpenAI compatibility mode.', 'type': 'invalid_request_error', 'param': None, 'code': 'model_not_supported'}, 'request_id': 'f37f144e-648f-9402-877a-47758b941c2f'}"
+    }
+  ],
+  "test_time": "2025-12-29 11:03:29.312010"
+}

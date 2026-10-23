@@ -1,0 +1,19 @@
+使用方法                                                                                                                                               
+                                                                                                                                                         
+  # 管理服务（新脚本）                                                                                                                                   
+  ./mix_project_manager.sh start      # 启动                                                                                                             
+  ./mix_project_manager.sh stop       # 停止                                                                                                             
+  ./mix_project_manager.sh restart    # 重启                                                                                                             
+  ./mix_project_manager.sh status     # 状态                                                                                                             
+  ./mix_project_manager.sh health     # 健康检查                                                                                                         
+  ./mix_project_manager.sh logs       # 查看日志                                                                                                         
+  ./mix_project_manager.sh logsf      # 实时日志                                                                                                         
+                                                                                                                                                         
+  # 或直接使用 systemctl                                                                                                                                 
+  systemctl start mix-project                                                                                                                            
+  systemctl restart mix-project                                                                                                                          
+  systemctl status mix-project                                                                                                                           
+                                                                                                                                                         
+  旧脚本保留                                                                                                                                             
+                                                                                                                                                         
+  fastapi_manager.sh 仍然保留，作为备用方案。

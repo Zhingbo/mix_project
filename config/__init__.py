@@ -1,0 +1,17 @@
+"""
+配置模块
+"""
+
+from config.auth_config import (
+    JWT_SECRET_KEY,
+    JWT_ALGORITHM,
+    JWT_ACCESS_TOKEN_EXPIRE_MINUTES,
+    PASSWORD_HASH_ALGORITHM
+)
+
+__all__ = [
+    'JWT_SECRET_KEY',
+    'JWT_ALGORITHM',
+    'JWT_ACCESS_TOKEN_EXPIRE_MINUTES',
+    'PASSWORD_HASH_ALGORITHM'
+]

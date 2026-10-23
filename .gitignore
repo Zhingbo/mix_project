@@ -1,0 +1,144 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual Environment
+venv/
+ENV/
+env/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Logs
+logs/
+*.log
+
+# OS specific
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Project specific
+industrial.log
+.env
+
+#requirements
+requirements.txt
+
+#history
+.specstory
+
+# 忽略临时文件
+temp_uploads/
+
+# 忽略输出文件目录
+resultTxt/
+resultImg/
+materials
+materials/url_list_*.txt
+
+
+# 忽略特定系统文件
+.DS_Store
+.env
+.vscode/
+.idea/
+
+# 忽略API文档输出目录
+api_docs/
+# 忽略所有 Excel 文件
+*.xlsx
+*.xls
+*.docx
+*.pdf
+
+# 模型文件
+Industry_chain/bert-base-chinese/
+Industry_chain/embedding/
+*.index
+
+#三元组测试脚本
+test_script.py
+
+# ===== 大型模型/数据/导出/生成物（不入库）=====
+/Industry_chain/bert-base-chinese/
+/Industry_chain/embedding/
+/Industry_chain/resultImg/
+/Industry_chain/resultTxt/
+/Industry_chain/outputFiles/
+/Industry_chain/vectorstore_faiss/
+/resultImg/
+/resultTxt/
+/html_files/
+/filled_reports/
+/产业链导出_*/
+/参考报告/
+/liandong-intelligent-agent-master/
+/liandong-intelligent-agent-master_backup_*/
+/backup_*/
+/logs/
+/materials/
+/temp_uploads/
+/test_logs/
+*.filepart
+*.zip
+*.sql
+*.faiss
+*.parquet
+*.bak*
+*.backup_*
+*.pyc
+._*
+__MACOSX/
+*.pid
+_tmp_*
+.git.legacy_*
+.git.failed_init_*
+
+# ===== 含真实密钥的配置（保留示例文件）=====
+/config/settings_show.yaml
+/config/settings_show.yaml.*
+/config/auth_config.py
+/Industry_chain/settings_show.yaml
+/settings.yaml
+/Industry_chain/zlctest/settings.yaml
+/.claude/settings.local.json
+!/settings.yaml.example
+!/Industry_chain/zlctest/settings.yaml.example
+*.bad_*
+
+# ===== 采集数据/日志/临时输出（不入库）=====
+/Industry_chain/*.txt
+/Industry_chain/zlctest/*.txt
+/scripts/company_match_results.txt
+/scripts/company_match_results.csv
+/preview_health_hits.txt
+/regen_ai2_*.txt
+/test_x.txt
+/白名单企业名单.csv

@@ -1,0 +1,152 @@
+# -*- coding: utf-8 -*-
+import os
+# 串行【真正全量】重跑 10 条链: 先删除步骤2-10数据, 再 force 从 step2 重跑
+# 关键: force=True 仍会跳过"已有数据"的步骤, 所以必须先 delete_steps 清空步骤数据
+import requests
+import pymysql
+import time
+import sys
+from datetime import datetime
+
+API_BASE = "http://127.0.0.1:8001"
+LOGIN_URL = f"{API_BASE}/api/auth/login"
+PROCESS_URL = f"{API_BASE}/api/pipeline/process"
+DELETE_URL = f"{API_BASE}/api/pipeline/delete_steps"
+
+DB = dict(host='8.141.5.67', port=3306, user='root', password=os.getenv('DB_PASSWORD'),
+          database='business_data', charset='utf8mb4')
+
+ALL = ["可控核聚变", "生命健康", "量子科技", "脑机接口", "5G",
+       "低空经济", "商业航天", "人形机器人", "集成电路", "卫星导航"]
+
+LOG_FILE = "/root/mix_project/logs/rerun_10chains_v2.log"
+
+
+def log(msg):
+    line = f"[{datetime.now().strftime('%Y-%m-%d %H:%M:%S')}] {msg}"
+    print(line, flush=True)
+    with open(LOG_FILE, "a", encoding="utf-8") as f:
+        f.write(line + "\n")
+
+
+def login():
+    r = requests.post(LOGIN_URL, json={"username": "admin", "password": "admin123"}, timeout=15)
+    tok = r.json().get("access_token")
+    if not tok:
+        raise RuntimeError(f"登录失败: {r.text[:200]}")
+    return tok
+
+
+def clear_steps(token, ind):
+    """删除步骤2-10数据, 并清关键中间表"""
+    headers = {"Authorization": f"Bearer {token}"}
+    r = requests.post(DELETE_URL, json={"industry_name": ind,
+                                        "steps": [2, 3, 4, 5, 6, 7, 8, 9, 10]},
+                      headers=headers, timeout=120)
+    log(f"    delete_steps(2-10) -> HTTP {r.status_code}")
+    # 额外清掉两个不在 delete_steps 映射里的中间表
+    conn = pymysql.connect(**DB)
+    cur = conn.cursor()
+    for t, col in [("company_nodes_merge_temp", "industry_name"),
+                   ("industry_structure_output", "industry_name")]:
+        cur.execute(f"DELETE FROM {t} WHERE {col} = %s", (ind,))
+    conn.commit()
+    cur.close(); conn.close()
+    log(f"    额外中间表已清空")
+
+
+def trigger_and_wait(token, ind):
+    headers = {"Authorization": f"Bearer {token}"}
+    body = {"industry_name": ind, "start_step": 2, "force": True}
+    started_markers = set()
+    try:
+        with requests.post(PROCESS_URL, json=body, headers=headers,
+                           timeout=None, stream=True) as resp:
+            if resp.status_code != 200:
+                return False, f"HTTP {resp.status_code}: {resp.text[:200]}"
+            for raw in resp.iter_lines(decode_unicode=True):
+                if not raw:
+                    continue
+                line = raw.strip()
+                if ("开始执行步骤" in line) or ("处理完成" in line) or ("Traceback" in line):
+                    # 只记录每步开始, 避免刷屏
+                    key = None
+                    import re
+                    m = re.search(r"开始执行步骤(\d+)", line)
+                    if m:
+                        key = f"step{m.group(1)}"
+                    elif "处理完成" in line:
+                        key = "DONE"
+                    elif "Traceback" in line:
+                        key = "TRACEBACK"
+                    if key and key not in started_markers:
+                        log(f"    {ind} | {line[:140]}")
+                        started_markers.add(key)
+        return True, "stream ended"
+    except Exception as e:
+        return False, str(e)
+
+
+def db_status(ind, poll=180, interval=10):
+    """轮询 pipeline_task_status 直到终态; 返回 (status, finallist, list_output)"""
+    conn = pymysql.connect(**DB)
+    cur = conn.cursor()
+    terminal = None
+    for _ in range(poll):
+        cur.execute("SELECT status, current_step, progress, error_message "
+                    "FROM pipeline_task_status WHERE industry_name=%s "
+                    "ORDER BY id DESC LIMIT 1", (ind,))
+        row = cur.fetchone()
+        if row and row[0] in ("completed", "error", "cancelled"):
+            terminal = row
+            break
+        time.sleep(interval)
+    cur.execute("SELECT COUNT(*) FROM company_nodes_finallist WHERE industry_name=%s", (ind,))
+    fin = cur.fetchone()[0]
+    cur.execute("SELECT COUNT(*) FROM company_list_output WHERE industry_name=%s", (ind,))
+    lst = cur.fetchone()[0]
+    cur.close(); conn.close()
+    return terminal, fin, lst
+
+
+def main():
+    inds = sys.argv[1:] if len(sys.argv) > 1 else ALL
+    log("=" * 60)
+    log(f"串行【clear+force】重跑 {len(inds)} 条链")
+    log("=" * 60)
+    token = login()
+    log("登录成功")
+    ok, bad = [], []
+    for i, ind in enumerate(inds, 1):
+        log(f"\n[{i}/{len(inds)}] {ind}")
+        try:
+            clear_steps(token, ind)
+        except Exception as e:
+            log(f"  ⚠️ 清空步骤失败 {e}, 继续尝试重跑")
+        t0 = time.time()
+        trig_ok, msg = trigger_and_wait(token, ind)
+        dt = time.time() - t0
+        if not trig_ok:
+            log(f"  ❌ {ind} 流失败: {msg} (耗时{dt:.0f}s)")
+            bad.append(ind)
+            continue
+        terminal, fin, lst = db_status(ind)
+        st = terminal[0] if terminal else "unknown"
+        err = (terminal[3] or "")[:160] if terminal else ""
+        log(f"  SSE结束 耗时{dt:.0f}s | 状态={st} | finallist={fin} | list_output={lst}")
+        if st == "completed" and lst > 0:
+            log(f"  ✅ {ind} 完成")
+            ok.append(ind)
+        else:
+            log(f"  ⚠️ {ind} 未确认: {st} {err}")
+            bad.append(ind)
+        time.sleep(3)
+    log(f"\n{'=' * 60}")
+    log(f"全部结束: 成功 {len(ok)} / 存疑 {len(bad)}")
+    if bad:
+        log(f"存疑: {bad}")
+    log("=" * 60)
+
+
+if __name__ == "__main__":
+    main()

@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>联东产业链智能体 - 管理面板风格Demo</title>
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #f0f2f5;
+        }
+
+        .app-container {
+            width: 100%;
+            height: 100vh;
+            display: flex;
+        }
+
+        /* ========== 顶部导航栏 - 深色 ========== */
+        .admin-header {
+            height: 56px;
+            background: #1a1a2e;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 24px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+        }
+
+        .header-left .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo {
+            width: 32px;
+            height: 32px;
+        }
+
+        .system-title {
+            font-size: 16px;
+            font-weight: 500;
+            color: #ffffff;
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .search-box {
+            display: flex;
+            align-items: center;
+            background: rgba(255,255,255,0.1);
+            border-radius: 6px;
+            padding: 6px 12px;
+        }
+
+        .search-box input {
+            background: transparent;
+            border: none;
+            outline: none;
+            color: #ffffff;
+            font-size: 14px;
+            width: 200px;
+        }
+
+        .search-box input::placeholder {
+            color: #8b8d9b;
+        }
+
+        .search-box i {
+            color: #8b8d9b;
+            margin-right: 6px;
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+        }
+
+        .user-avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            border: 2px solid rgba(255,255,255,0.1);
+        }
+
+        /* ========== 左侧边栏 - 深色 ========== */
+        .admin-sidebar {
+            width: 200px;
+            background: #16162a;
+            overflow-y: auto;
+        }
+
+        .sidebar-section {
+            padding: 16px 12px;
+        }
+
+        .sidebar-title {
+            font-size: 12px;
+            color: #6b6c7e;
+            font-weight: 600;
+            text-transform: uppercase;
+            padding: 8px 12px;
+            letter-spacing: 0.5px;
+        }
+
+        .sidebar-item {
+            display: flex;
+            align-items: center;
+            padding: 10px 12px;
+            color: #8b8d9b;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.2s;
+            margin-bottom: 2px;
+        }
+
+        .sidebar-item:hover {
+            background: rgba(255,255,255,0.05);
+            color: #ffffff;
+        }
+
+        .sidebar-item.active {
+            background: rgba(79, 172, 254, 0.2);
+            color: #ffffff;
+        }
+
+        .sidebar-item i {
+            margin-right: 8px;
+            font-size: 16px;
+        }
+
+        /* ========== 主内容区 ========== */
+        .main-content {
+            flex: 1;
+            overflow-y: auto;
+            padding: 20px;
+        }
+
+        /* ========== 欢迎消息 ========== */
+        .welcome-message {
+            text-align: center;
+            padding: 60px 20px;
+        }
+
+        .welcome-message h1 {
+            font-size: 26px;
+            color: #1a1a2e;
+            font-weight: 500;
+            margin-bottom: 30px;
+        }
+
+        .quick-actions {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .quick-action-item {
+            background: #ffffff;
+            border: 1px solid #e4e9f2;
+            border-radius: 8px;
+            padding: 15px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .quick-action-item:hover {
+            border-color: #4facfe;
+            box-shadow: 0 2px 8px rgba(79, 172, 254, 0.15);
+            transform: translateY(-2px);
+        }
+
+        /* ========== 消息列表 ========== */
+        .message {
+            display: flex;
+            margin-bottom: 20px;
+            align-items: flex-start;
+        }
+
+        .message.user {
+            justify-content: flex-end;
+        }
+
+        .message-avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            margin-right: 10px;
+            flex-shrink: 0;
+        }
+
+        .message-avatar img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+        }
+
+        .message-text {
+            flex: 1;
+            max-width: 75%;
+        }
+
+        /* ========== 任务卡片 ========== */
+        .task-container {
+            background: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+            overflow: hidden;
+            margin-bottom: 12px;
+        }
+
+        .task-header {
+            padding: 14px 18px;
+            border-bottom: 1px solid #f0f2f5;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .task-title {
+            font-size: 15px;
+            font-weight: 500;
+            color: #1a1a2e;
+        }
+
+        .task-toggle-icon {
+            color: #8b8d9b;
+            transition: transform 0.2s;
+        }
+
+        .task-container.collapsed .task-toggle-icon {
+            transform: rotate(-90deg);
+        }
+
+        .task-steps {
+            padding: 0 18px;
+        }
+
+        /* ========== 思维导图区域 ========== */
+        .mindmap-wrapper {
+            padding: 16px;
+        }
+
+        .mindmap-actions {
+            background: #f7f9fc;
+            border-radius: 8px;
+            padding: 14px;
+        }
+
+        .action-info {
+            font-size: 14px;
+            color: #6b6c7e;
+            margin-bottom: 12px;
+        }
+
+        .pipeline-buttons {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .pipeline-progress {
+            margin-top: 12px;
+        }
+
+        .pipeline-current-step {
+            margin-top: 8px;
+            font-size: 13px;
+            color: #4facfe;
+        }
+
+        /* ========== 处理日志 ========== */
+        .pipeline-log {
+            margin-top: 16px;
+            border-top: 1px solid #e4e9f2;
+            padding-top: 12px;
+        }
+
+        .log-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 13px;
+            color: #6b6c7e;
+            margin-bottom: 8px;
+        }
+
+        .log-list {
+            max-height: 200px;
+            overflow-y: auto;
+            background: #1a1a2e;
+            border-radius: 6px;
+            padding: 10px;
+        }
+
+        .log-item {
+            display: flex;
+            gap: 8px;
+            padding: 4px 0;
+            font-size: 12px;
+            color: #c5c8d0;
+        }
+
+        .log-time {
+            color: #6b6c7e;
+            min-width: 60px;
+        }
+
+        .log-success .log-message {
+            color: #52c41a;
+        }
+
+        .log-info .log-message {
+            color: #409eff;
+        }
+
+        /* ========== 输入区域 ========== */
+        .input-area {
+            background: #ffffff;
+            border-top: 1px solid #e4e9f2;
+            padding: 15px 20px;
+        }
+
+        /* ========== 标签样式 ========== */
+        .el-tag--success {
+            background-color: #f0f9ff;
+            border-color: #d1e7dd;
+            color: #52c41a;
+        }
+
+        .el-tag--warning {
+            background-color: #fdf6ec;
+            border-color: #f5dab1;
+            color: #e6a23c;
+        }
+
+        .el-tag--info {
+            background-color: #f4f4f5;
+            border-color: #d9d9d9;
+            color: #909399;
+        }
+
+        /* ========== 按钮优化 ========== */
+        .el-button--primary {
+            background: linear-gradient(90deg, #4facfe 0%, #00f2fe 100%);
+            border: none;
+        }
+
+        .el-button--success {
+            background: linear-gradient(90deg, #43e97b 0%, #38f9d7 100%);
+            border: none;
+        }
+
+        /* ========== 滚动条 ========== */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f0f2f5;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #c1c6cc;
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <div class="app-container">
+            <!-- 左侧边栏 -->
+            <div class="admin-sidebar">
+                <div class="sidebar-section">
+                    <div class="sidebar-title">产业链列表</div>
+                    <div class="sidebar-item active">
+                        <i class="el-icon-collection-tag"></i>
+                        <span>AI智能算力</span>
+                    </div>
+                    <div class="sidebar-item">
+                        <i class="el-icon-collection-tag"></i>
+                        <span>工业软件</span>
+                    </div>
+                    <div class="sidebar-item">
+                        <i class="el-icon-collection-tag"></i>
+                        <span>生物医药</span>
+                    </div>
+                    <div class="sidebar-item">
+                        <i class="el-icon-collection-tag"></i>
+                        <span>新能源汽车</span>
+                    </div>
+                    <div class="sidebar-item">
+                        <i class="el-icon-collection-tag"></i>
+                        <span>半导体设备</span>
+                    </div>
+                    <div class="sidebar-item">
+                        <i class="el-icon-collection-tag"></i>
+                        <span>智能制造装备</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 右侧主内容 -->
+            <div class="main-content">
+                <!-- 顶部导航 -->
+                <div class="admin-header">
+                    <div class="header-left">
+                        <div class="logo-section">
+                            <img src="https://via.placeholder.com/32x32/4facfe/ffffff?text=L" alt="logo">
+                            <span class="system-title">联东产业链智能体</span>
+                        </div>
+                    </div>
+                    <div class="header-right">
+                        <div class="search-box">
+                            <i class="el-icon-search"></i>
+                            <input type="text" placeholder="搜索产业链...">
+                        </div>
+                        <div class="user-info">
+                            <img src="https://via.placeholder.com/32x32/1296db/ffffff?text=管" alt="用户" class="user-avatar">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 消息内容 -->
+                <div class="messages-container">
+                    <!-- 欢迎消息 -->
+                    <div class="welcome-message">
+                        <h1>有什么可以帮忙的?</h1>
+                        <div class="quick-actions">
+                            <div class="quick-action-item">🏭 机器人</div>
+                            <div class="quick-action-item">🔬 半导体</div>
+                            <div class="quick-action-item">🚗 汽车</div>
+                            <div class="quick-action-item">💊 生物医药</div>
+                        </div>
+                    </div>
+
+                    <!-- 用户消息 -->
+                    <div class="message user">
+                        <div class="message-text">
+                            <div style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); color: white; padding: 12px 18px; border-radius: 8px;">
+                                AI智能算力
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- AI回复 - 产业链图谱卡片 -->
+                    <div class="message assistant">
+                        <div class="message-avatar">
+                            <img src="https://via.placeholder.com/32x32/4facfe/ffffff?text=L" alt="AI">
+                        </div>
+                        <div class="message-text">
+                            <div class="task-container">
+                                <div class="task-header">
+                                    <span class="task-title">AI智能算力 - 产业链图谱</span>
+                                </div>
+                                <div class="task-steps">
+                                    <div class="mindmap-wrapper">
+                                        <div class="mindmap-actions">
+                                            <div class="action-info">产业链：AI智能算力</div>
+                                            <div class="pipeline-buttons">
+                                                <el-tag type="success" size="small">✓ 处理完成</el-tag>
+                                                <el-button type="success" size="small" icon="el-icon-download">导出结果</el-button>
+                                                <el-button size="small" icon="el-icon-view">查看日志</el-button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- 完成统计 -->
+                                    <div style="padding: 0 18px 15px 18px;">
+                                        <div style="display: flex; gap: 25px; justify-content: center; border-top: 1px dashed #e4e9f2;">
+                                            <div style="text-align: center;">
+                                                <div style="font-size: 12px; color: #8b8d9b;">节点数量</div>
+                                                <div style="font-size: 18px; font-weight: 600; color: #1a1a2e;">45</div>
+                                            </div>
+                                            <div style="text-align: center;">
+                                                <div style="font-size: 12px; color: #8b8d9b;">企业数据</div>
+                                                <div style="font-size: 18px; font-weight: 600; color: #1a1a2e;">11,087</div>
+                                            </div>
+                                            <div style="text-align: center;">
+                                                <div style="font-size: 12px; color: #8b8d9b;">处理耗时</div>
+                                                <div style="font-size: 18px; font-weight: 600; color: #1a1a2e;">3分45秒</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 另一个示例 - 未处理 -->
+                    <div class="message assistant">
+                        <div class="message-avatar">
+                            <img src="https://via.placeholder.com/32x32/4facfe/ffffff?text=L" alt="AI">
+                        </div>
+                        <div class="message-text">
+                            <div class="task-container">
+                                <div class="task-header">
+                                    <span class="task-title">工业软件 - 产业链图谱</span>
+                                </div>
+                                <div class="task-steps">
+                                    <div class="mindmap-wrapper">
+                                        <div class="mindmap-actions">
+                                            <div class="action-info">产业链：工业软件</div>
+                                            <div class="pipeline-buttons">
+                                                <el-button type="primary" size="small" icon="el-icon-video-play">开始自动化处理（步骤2-10）</el-button>
+                                                <el-button size="small" icon="el-icon-upload2">上传白名单</el-button>
+                                            </div>
+                                            <!-- 进度条 -->
+                                            <div class="pipeline-progress" style="display:none;">
+                                                <div class="pipeline-current-step">步骤4: 公司匹配节点</div>
+                                                <el-progress :percentage="35" :stroke-width="8"></el-progress>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 输入区域 -->
+                    <div class="input-area">
+                        <el-input
+                            placeholder="输入产业链名称，如：AI智能算力、工业软件..."
+                            prefix-icon="el-icon-edit"
+                            v-model="inputMessage">
+                            <el-button
+                                slot="append"
+                                icon="el-icon-s-promotion"
+                                type="primary">
+                                发送
+                            </el-button>
+                        </el-input>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/vue@2.6.14/dist/vue.js"></script>
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+    <script>
+        new Vue({
+            el: '#app',
+            data() {
+                return {
+                    inputMessage: '',
+                    chains: [
+                        { name: 'AI智能算力', active: true },
+                        { name: '工业软件', active: false },
+                        { name: '生物医药', active: false },
+                        { name: '新能源汽车', active: false },
+                        { name: '半导体设备', active: false },
+                        { name: '智能制造装备', active: false },
+                    ]
+                }
+            },
+            methods: {
+                selectChain(chain) {
+                    this.chains.forEach(c => c.active = false);
+                    chain.active = true;
+                },
+                sendMessage() {
+                    if (!this.inputMessage.trim()) {
+                        this.$message.warning('请输入产业链名称');
+                        return;
+                    }
+                    this.$message.success('开始分析: ' + this.inputMessage);
+                },
+                startProcessing() {
+                    this.$message.success('开始自动化处理');
+                },
+                exportResult() {
+                    this.$message.success('导出结果');
+                },
+                viewLog() {
+                    this.$message.info('查看日志');
+                }
+            }
+        });
+    </script>
+</body>
+</html>
